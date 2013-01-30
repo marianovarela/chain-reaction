@@ -23,3 +23,5 @@ Font used in game is [Diavlo](http://www.exljbris.com/diavlo.html "Diavlo").
 A font by Jos Buivenga (exljbris).
 
 New edit
+
+Lasse edit
