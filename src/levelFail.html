@@ -3,7 +3,7 @@
     <p class="topSpaceMedium">
         Level <span class="bold" id="level">0</span> requires <span class="bold" id="required">0</span> explosions and you only manage <span class="bold" id="explosions">0</span> explosions. <br />        Your total score is back to <span id="score">0</span>.
     </p>
-    <div class="center topSpaceMedium">
+    <div id="menuFail" class="center topSpaceMedium">
         <button id="submitScore" class="smallButton">Submit my score</button>
         <button id="tryAgain" class="largeButton">Try again</button>
     </div>
@@ -13,10 +13,14 @@
     $('#tryAgain').click(function () {
         game.restartLevel();
         ui.overlayClose();
+        deactivate(component.gameover);
+        activate(component.game);
     });
 
     $('#submitScore').click(function () {
         ui.loadOverlay(ui.files.submitScore);
+        deactivate(component.gameover);
+        activate(component.submitScore);
     });
 
     $('#fail #level').text(game.currentLevel);

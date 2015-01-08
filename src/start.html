@@ -1,5 +1,5 @@
 ﻿<script type="text/javascript">
-    $('#startGame').click(function () { game.init(CANVAS_ID); ui.overlayClose(); });
+    $('#startGame').click(function () { game.init(CANVAS_ID); ui.overlayClose(); initGame(); });
     $('#top100Link').click(function (e) {
         e.preventDefault();
         ui.loadOverlay(ui.files.highScore);
@@ -16,29 +16,31 @@
     });
 </script>
 
-<div class="startLeftPanel">
-    <h2>Let's start some chain reactions!</h2>
-    <p>The goal of this game is to get as many explosions as possible. The more explosions you get in a chain reaction - the more points you get.<br /> Have fun!</p>
-	                    
-    <div class="center">
-        <button id="startGame" class="largeButton">Start Game</button>
-    </div>
-</div>
-<div class="startRightPanel">
-    <h2>High Score</h2>
-    
-    <script id="scoreTemplate" type="text/x-jquery-tmpl">
-        <tr>
-            <td class="number">${position}.</td>
-            <td class="name">${name}</td>
-            <td class="score">${util.formatNumber(points)}</td>
-        </tr>
-    </script>
-
-    <table class="highScore">
-        <tbody>
-            <tr>
-            </tr>
-        </tbody>
-    </table>
+<div id="startPanel">
+	<div id="startButtonPanel" class="startLeftPanel">
+	    <h2>Let's start some chain reactions!</h2>
+	    <p>The goal of this game is to get as many explosions as possible. The more explosions you get in a chain reaction - the more points you get.<br /> Have fun!</p>
+		                    
+	    <div class="center">
+	        <div id="startGame" class="largeButton">Start Game</div>
+	    </div>
+	</div>
+	<div class="startRightPanel">
+	    <h2>High Score</h2>
+	    
+	    <script id="scoreTemplate" type="text/x-jquery-tmpl">
+	        <tr>
+	            <td class="number">${position}.</td>
+	            <td class="name">${name}</td>
+	            <td class="score">${util.formatNumber(points)}</td>
+	        </tr>
+	    </script>
+	
+	    <table class="highScore">
+	        <tbody>
+	            <tr>
+	            </tr>
+	        </tbody>
+	    </table>
+	</div>
 </div>

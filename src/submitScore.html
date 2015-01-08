@@ -1,16 +1,18 @@
 ﻿<div id="suc" class="center topSpaceLarge">
-    <h2>Submit your score</h2>
-    <p class="topSpaceMedium">
-        Score: <span class="bold" id="score">0</span>.
-    </p>
-    <p>
-        Enter your name to submit the score:<br />
-        <input type="text" id="name" size="30" placeholder="Name" />
-    </p>
-
-    <div>
-        <button id="cancel" class="smallButton">Cancel</button>
-        <button id="submit" class="largeButton">Submit</button>
+    <div id="submit">
+	    <h2>Submit your score</h2>
+	    <p class="topSpaceMedium">
+	        Score: <span class="bold" id="score">0</span>.
+	    </p>
+	    <p>
+	        Enter your name to submit the score:<br />
+	        <input type="text" id="name" size="30" placeholder="Name" />
+	    </p>
+	
+	    <div id="submit">
+	        <button id="cancel" class="smallButton">Cancel</button>
+	        <button id="submit" class="largeButton">Submit</button>
+	    </div>
     </div>            
 </div>
 
@@ -21,6 +23,8 @@
         game.reset();
         ui.updateStatusBar();
         ui.loadOverlay(ui.files.start);
+        deactivate(component.submitScore);
+    	activate(component.startPanel);
     });
 
     $('#submit').click(function () {
@@ -32,8 +36,8 @@
         highScore.save(name, game.stats.score, game.currentLevel, function () {
             ui.loadOverlay(ui.files.start);
         });
-
-
+		deactivate(component.submitScore);
+		activate(component.startPanel);
     });
     
     $('#suc #level').text(game.currentLevel);

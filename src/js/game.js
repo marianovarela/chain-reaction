@@ -3,6 +3,166 @@
 /// <reference path="ball.js" />
 /// <reference path="util.drawer.js" />
 /// <reference path="util.misc.js" />
+	
+	component = {};
+
+	component.root = extensible.create_basic('root').initialize();
+	
+	component.root.handle_inner = function(key) {
+	  console.log('handling ' + key);
+	  var audio = new Audio('audio/fail.mp3');
+	  audio.play();
+	};
+	
+	component.root.set_active_down_to_up = function(child_component, changed_child) {
+	  
+	  console.log('set_active_down_to_up ' + this.identifier);
+	  this.set_current_component(child_component);
+	};
+	
+	$(function(){component.startPanel.set_active(true);});
+	
+	component.control = (function() {
+	  var Control, get_keycode, keycodes, listeners;
+	  listeners = [];
+	  keycodes = [
+	    {
+	      key: 'left',
+	      code: 37
+	    }, {
+	      key: 'up',
+	      code: 38
+	    }, {
+	      key: 'right',
+	      code: 39
+	    }, {
+	      key: 'down',
+	      code: 40
+	    }, {
+	      key: 'enter',
+	      code: 13
+	    }
+	  ];
+	  get_keycode = function(code) {
+	    var keycode, _i, _len;
+	    for (_i = 0, _len = keycodes.length; _i < _len; _i++) {
+	      keycode = keycodes[_i];
+	      if (keycode.code === code) {
+	        return keycode;
+	      }
+	    }
+	  };
+	  return Control = (function() {
+	    function Control() {}
+	
+	    Control.subscribe = function(listener) {
+	      listeners.push(listener);
+	      return function() {
+	        return unsubscribe(listener);
+	      };
+	    };
+	
+	    Control.unsubscribe = function(listener) {
+	      return _.remove(listeners, listener);
+	    };
+	
+	    Control.initialize = function() {
+	      return document.onkeydown = function(event) {
+	        var keycode, listener, _i, _len;
+	        if (keycode = get_keycode(event.keyCode)) {
+	          for (_i = 0, _len = listeners.length; _i < _len; _i++) {
+	            listener = listeners[_i];
+	            listener.handle(keycode.key);
+	          }
+	          event.preventDefault();
+	          return false;
+	        }
+	      };
+	    };
+	
+	    return Control;
+	
+	  })();
+	})(this);
+
+	function initGame(){
+		$(function(){component.startPanel.set_not_active();});
+		$(function(){component.game.set_active(true);});
+	}
+	
+	function initMenuNextLevel(){
+		$(function(){component.game.set_not_active();});
+		$(function(){component.nextLevelMenu.set_active(true);});
+	}
+	
+	function initGameOver(){
+		$(function(){component.game.set_not_active();});
+		$(function(){component.gameover.set_active(true);});
+	}
+	
+	function activate(componentId){
+		componentId.set_active(true);
+	}
+	
+	function deactivate(componentId){
+		componentId.set_not_active();
+	}
+
+	function initGame() {
+		
+		component.control.initialize();
+		component.control.subscribe(component.root);
+		
+		component.startPanel = extensible.create_vertical('startPanel');
+		
+		component.game = extensible.create_horizontal('gameBoard');
+		
+		component.nextLevelMenu = extensible.create_horizontal('suc');
+		
+		component.gameover = extensible.create_horizontal('fail');
+		
+		component.submitScore= extensible.create_horizontal('submitScore');
+		
+		component.root
+			.add(extensible.create_horizontal('startButtonPanel')
+			    .add(component.startPanel.set_priority(0)
+		        	.add(extensible.create_leaf('startGame').set_priority(0))
+			    )
+			);
+		
+		component.root
+			.add(extensible.create_horizontal('game')
+			    .add(component.game.set_priority(0)
+		        	.add(extensible.create_leaf('startGame').set_priority(0))
+			    )
+			);	
+			
+		component.root
+			.add(extensible.create_horizontal('nextLevelMenu')
+			    .add(component.nextLevelMenu.set_priority(0)
+		        	.add(extensible.create_leaf('nextLevel').set_priority(0))
+			    )
+			);	
+			
+		component.root
+			.add(extensible.create_horizontal('menuFail')
+			    .add(component.gameover.set_priority(0)
+		        	.add(extensible.create_leaf('submitScore').set_priority(0))
+		        	.add(extensible.create_leaf('tryAgain').set_priority(1))
+			    )
+			);	
+			
+		component.root
+			.add(extensible.create_horizontal('submit')
+			    .add(component.submitScore.set_priority(0)
+		        	.add(extensible.create_leaf('cancel').set_priority(0))
+		        	.add(extensible.create_leaf('submit').set_priority(1))
+			    )
+			);
+					
+	}
+
+	initGame();
 
 var game = game || {};
 
@@ -88,11 +248,13 @@ game = {
     },
 
     restartLevel: function () {
+    	//setear menu para elegir opcion cuando pierdo
         this.stopGameLoop();
         this.startLevel(levels[this.currentLevel]);
     },
 
     loadNextLevel: function () {
+    	//setear opcion cuando paso a otro nivel y elijo next level
         this.stopGameLoop();
         this.startLevel(levels[++this.currentLevel]);
     },
@@ -182,13 +344,17 @@ game = {
             this.stopGameLoop();
 
             if (this.level.passedGoal(this.explodedBalls.length)) {
-                if (this.currentLevel < levels.length - 1)
+                if (this.currentLevel < levels.length - 1){
                     this.events.levelFinished();
-                else
+                    initMenuNextLevel();
+                }    
+                else{
                     this.events.lastLevelFinished();
+                }    
             }
             else {
                 // remove points earned this level because we didn't pass goals.
+            	initGameOver();
                 this.stats.score -= this.stats.levelScore;
 
                 this.events.gameOver();
