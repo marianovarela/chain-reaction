@@ -121,7 +121,7 @@
 		
 		component.gameover = extensible.create_horizontal('fail');
 		
-		component.submitScore= extensible.create_horizontal('submitScore');
+		component.submitScore= extensible.create_horizontal('suc');
 		
 		component.root
 			.add(extensible.create_horizontal('startButtonPanel')
@@ -153,7 +153,7 @@
 			);	
 			
 		component.root
-			.add(extensible.create_horizontal('submit')
+			.add(extensible.create_horizontal('submitScores')
 			    .add(component.submitScore.set_priority(0)
 		        	.add(extensible.create_leaf('cancel').set_priority(0))
 		        	.add(extensible.create_leaf('submit').set_priority(1))
