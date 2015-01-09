@@ -71,8 +71,8 @@ ui.backgroundAnimation = function (callback) {
 ui.updateStatusBar = function () {
     $('#score').text(util.formatNumber(game.stats.score));
     if (game.stats.levelScore > 0)
-        $('#middleInfoHolder').text(util.formatNumber(game.stats.levelScore) + " points");
-    $('#level').text(game.level.number + " of " + (levels.length - 1));
+        $('#middleInfoHolder').text(util.formatNumber(game.stats.levelScore) + " puntos");
+    $('#level').text(game.level.number + " de " + (levels.length - 1));
 };
 
 $(function () {

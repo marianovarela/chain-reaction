@@ -250,13 +250,11 @@ game = {
     },
 
     restartLevel: function () {
-    	//setear menu para elegir opcion cuando pierdo
         this.stopGameLoop();
         this.startLevel(levels[this.currentLevel]);
     },
 
     loadNextLevel: function () {
-    	//setear opcion cuando paso a otro nivel y elijo next level
         this.stopGameLoop();
         this.startLevel(levels[++this.currentLevel]);
     },
