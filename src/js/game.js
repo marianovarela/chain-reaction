@@ -227,7 +227,7 @@ game = {
     },
 
     startLevel: function (level) {
-    	this.bomb = new Ball(600, 150, 10, '#FFFFFF');
+    	this.bomb = new Ball(305, 205, 25, '#ddd');
     	
         this.level = level;
         this.currentLevel = level.number;

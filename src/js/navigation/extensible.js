@@ -267,7 +267,7 @@ var extensible = function($rootScope) {
 				handle : function(key) {
 					if (key === 'enter') {
 						if (game.bomb == null || game.bomb.isExploded)
-           					 return;
+           					return;
 						
 						var audio = new Audio('audio/bomb_planted.mp3');
 						audio.play();
@@ -279,24 +279,36 @@ var extensible = function($rootScope) {
 						return true;
 					}
 					if (key === 'down') {
+						if (game.bomb == null || game.bomb.isExploded)
+       						return;
+           					 
 						moveDown();
 						console.log('handling enter ' + this.identifier);
 						$('#' + this.identifier).get(0).click();
 						return true;
 					}
 					if (key === 'up') {
+						if (game.bomb == null || game.bomb.isExploded)
+       						return;
+       						
 						moveUp();
 						console.log('handling enter ' + this.identifier);
 						$('#' + this.identifier).get(0).click();
 						return true;
 					}
 					if (key === 'left') {
+						if (game.bomb == null || game.bomb.isExploded)
+       						return;
+						
 						moveLeft();
 						console.log('handling enter ' + this.identifier);
 						$('#' + this.identifier).get(0).click();
 						return true;
 					}
 					if (key === 'right') {
+						if (game.bomb == null || game.bomb.isExploded)
+       						return;
+       						
 						moveRight();
 						console.log('handling enter ' + this.identifier);
 						$('#' + this.identifier).get(0).click();
