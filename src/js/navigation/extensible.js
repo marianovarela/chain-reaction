@@ -266,6 +266,12 @@ var extensible = function($rootScope) {
 				},
 				handle : function(key) {
 					if (key === 'enter') {
+						if (game.bomb == null || game.bomb.isExploded)
+           					 return;
+
+				        game.bomb.explode();
+				        game.addExplosion(game.bomb);
+				        
 						console.log('handling enter ' + this.identifier);
 						$('#' + this.identifier).get(0).click();
 						return true;
