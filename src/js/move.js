@@ -1,15 +1,35 @@
 ﻿	function moveUp(){
-		game.bomb.y -= 4;
+		if(game.bomb.y - 4 >= 0){
+			game.bomb.y -= 4;
+		}
+		else{
+			game.bomb.y -= 0;	
+		}
 	}
 	
 	function moveDown(){
-		game.bomb.y += 4;
+		if(game.bomb.y + 4 <= 400){
+			game.bomb.y += 4;
+		}
+		else{
+			game.bomb.y = 400;
+		}
 	}
 	
 	function moveLeft(){
-		game.bomb.x -= 4;
+		if(game.bomb.x -4 >= 0){
+			game.bomb.x -= 4;
+		}
+		else{
+			game.bomb.x = 0;
+		}
 	}
 	
 	function moveRight(){
-		game.bomb.x += 4;
+		if(game.bomb.x + 4 <= 620){
+			game.bomb.x += 4;
+		}
+		else{
+			game.bomb.x = 620;
+		}
 	}
