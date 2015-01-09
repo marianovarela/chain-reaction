@@ -85,7 +85,8 @@
 	  })();
 	})(this);
 
-	function initGame(){
+	function playGame(){
+		console.log("ahoraa");
 		$(function(){component.startPanel.set_not_active();});
 		$(function(){component.game.set_active(true);});
 	}
@@ -106,6 +107,10 @@
 	
 	function deactivate(componentId){
 		componentId.set_not_active();
+	}
+	
+	function mover(){
+		game.bomb.y += 10;
 	}
 
 	function initGame() {
@@ -131,9 +136,9 @@
 			);
 		
 		component.root
-			.add(extensible.create_horizontal('game')
+			.add(extensible.create_horizontal('levelProgress')
 			    .add(component.game.set_priority(0)
-		        	.add(extensible.create_leaf('startGame').set_priority(0))
+		        	.add(extensible.create_ball('game').set_priority(0))
 			    )
 			);	
 			
@@ -227,11 +232,13 @@ game = {
     },
 
     startLevel: function (level) {
+    	this.bomb = new Ball(600, 150, 10, '#FFFFFF');
+    	
         this.level = level;
         this.currentLevel = level.number;
         this.explodedBalls = [];
         this.balls = [];
-        this.bomb = null;
+        // this.bomb = null;
         this.stats.levelScore = 0;
 
         // default settings in case they have been changed
@@ -337,7 +344,7 @@ game = {
             this.events.levelGoalReached();
         }
     },
-
+    
     checkGameState: function () {
         if (this.explodedBalls.length > 0 && game.explodedBalls.every(Ball.isClosed)) {
             this.drawer.clear();
@@ -401,4 +408,5 @@ game = {
             return (previousBall.depth > currentBall.depth ? previousBall : currentBall);
         }).depth;
     }
+    
 };

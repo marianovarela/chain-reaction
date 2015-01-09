@@ -1,5 +1,5 @@
 ﻿<script type="text/javascript">
-    $('#startGame').click(function () { game.init(CANVAS_ID); ui.overlayClose(); initGame(); });
+    $('#startGame').click(function () { game.init(CANVAS_ID); ui.overlayClose(); playGame(); });
     $('#top100Link').click(function (e) {
         e.preventDefault();
         ui.loadOverlay(ui.files.highScore);

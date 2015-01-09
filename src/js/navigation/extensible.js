@@ -252,38 +252,24 @@ var extensible = function($rootScope) {
 				},
 			};
 		},
-		create_card : function(identifier) {
+		create_ball : function(identifier) {
 			return {
 				identifier : identifier,
-				id_played: null,
 				set_active : function() {
-					console.log(this.id_played);
-					var index = this.identifier.substring(7,6);
-					var classes = document.getElementById(this.identifier).classList;
-					if(classes.contains('naipe-jugado')){
-						$('#' + this.id_played).addClass('played');
-					}else{
-						$('#' + this.identifier).addClass('hover');
-					}
+					$('#' + this.identifier).addClass('hover');
 					console.log('set active ' +  this.identifier);
 					return this.active = true;
 				},
 				set_not_active : function() {
-					var index = this.identifier.substring(7,6);
-					$('#' + this.id_played).removeClass('played');
 					$('#' + this.identifier).removeClass('hover');
 					return this.active = false;
 				},
 				handle : function(key) {
 					if (key === 'enter') {
-						var classes = document.getElementById(this.identifier).classList;
-						if(classes.contains('naipe-jugado')){
-							return false;
-						}else{
-							console.log('handling enter ' + this.identifier);
-							$('#' + this.identifier).get(0).click();
-							return true;
-						}	
+						mover();
+						console.log('handling enter ' + this.identifier);
+						$('#' + this.identifier).get(0).click();
+						return true;
 					}
 					return false;
 				},
