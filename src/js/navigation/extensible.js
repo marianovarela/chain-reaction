@@ -268,7 +268,9 @@ var extensible = function($rootScope) {
 					if (key === 'enter') {
 						if (game.bomb == null || game.bomb.isExploded)
            					 return;
-
+						
+						var audio = new Audio('audio/bomb_planted.mp3');
+						audio.play();
 				        game.bomb.explode();
 				        game.addExplosion(game.bomb);
 				        
