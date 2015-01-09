@@ -266,7 +266,30 @@ var extensible = function($rootScope) {
 				},
 				handle : function(key) {
 					if (key === 'enter') {
-						mover();
+						console.log('handling enter ' + this.identifier);
+						$('#' + this.identifier).get(0).click();
+						return true;
+					}
+					if (key === 'down') {
+						moveDown();
+						console.log('handling enter ' + this.identifier);
+						$('#' + this.identifier).get(0).click();
+						return true;
+					}
+					if (key === 'up') {
+						moveUp();
+						console.log('handling enter ' + this.identifier);
+						$('#' + this.identifier).get(0).click();
+						return true;
+					}
+					if (key === 'left') {
+						moveLeft();
+						console.log('handling enter ' + this.identifier);
+						$('#' + this.identifier).get(0).click();
+						return true;
+					}
+					if (key === 'right') {
+						moveRight();
 						console.log('handling enter ' + this.identifier);
 						$('#' + this.identifier).get(0).click();
 						return true;

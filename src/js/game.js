@@ -86,7 +86,6 @@
 	})(this);
 
 	function playGame(){
-		console.log("ahoraa");
 		$(function(){component.startPanel.set_not_active();});
 		$(function(){component.game.set_active(true);});
 	}
@@ -109,10 +108,6 @@
 		componentId.set_not_active();
 	}
 	
-	function mover(){
-		game.bomb.y += 10;
-	}
-
 	function initGame() {
 		
 		component.control.initialize();
