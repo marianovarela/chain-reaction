@@ -4,6 +4,12 @@
 /// <reference path="util.drawer.js" />
 /// <reference path="util.misc.js" />
 	
+	var $GAME = {};
+	
+	$GAME.name = "CHAIN_REACTION";
+	$GAME.url_get = "http://localhost:8083/api/v1/score/search/findByGameOrderByScoreDesc?game=";
+	$GAME.url_post = "http://localhost:8083/api/v1/score";
+	
 	component = {};
 
 	component.root = extensible.create_basic('root').initialize();

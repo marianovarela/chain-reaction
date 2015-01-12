@@ -1,4 +1,10 @@
 ﻿<script type="text/javascript">
+    function addPosition(scores){
+    	for (i = 0; i < scores.length; i++) { 
+		    scores[i].position = i + 1;
+		}
+    }
+    
     $('#startGame').click(function () { game.init(CANVAS_ID); ui.overlayClose(); playGame(); });
     $('#top100Link').click(function (e) {
         e.preventDefault();
@@ -10,10 +16,12 @@
             highScore.save('Player', i * 5000, levels.length - 1);
         }
     }
-
-    highScore.topScores(10, function (highScores) {
-        $("#scoreTemplate").tmpl(highScores).prependTo(".highScore tbody");
-    });
+	
+	$.get($GAME.url_get + $GAME.name, function (data){
+    		scores = data._embedded.score;
+    		addPosition(scores);
+    		$("#scoreTemplate").tmpl(scores).prependTo(".highScore tbody");
+    });		
 </script>
 
 <div id="startPanel">
@@ -33,7 +41,7 @@
 	        <tr>
 	            <td class="number">${position}.</td>
 	            <td class="name">${name}</td>
-	            <td class="score">${util.formatNumber(points)}</td>
+	            <td class="score">${util.formatNumber(score)}</td>
 	        </tr>
 	    </script>
 	
