@@ -10,7 +10,8 @@
 	$.get($GAME.url_get + $GAME.name, function (data){
     		scores = data._embedded.score;
     		addPosition(scores);
-    		$("#scoreTemplate").tmpl(scores).prependTo(".highScore tbody");
+    		var list = scores.slice(0,10);
+    		$("#scoreTemplate").tmpl(list).prependTo(".highScore tbody");
     });		
 </script>
 
