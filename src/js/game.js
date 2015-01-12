@@ -133,6 +133,7 @@
 			.add(extensible.create_horizontal('startButtonPanel')
 			    .add(component.startPanel.set_priority(0)
 		        	.add(extensible.create_leaf('startGame').set_priority(0))
+		        	.add(extensible.create_leaf('exitStartGame').set_priority(1))
 			    )
 			);
 		

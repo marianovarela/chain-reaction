@@ -10,6 +10,8 @@
 </div>
 
 <script type="text/javascript">
+	$(function(){component.gameover.components[0].set_active(true);});
+
     $('#tryAgain').click(function () {
         game.restartLevel();
         ui.overlayClose();

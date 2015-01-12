@@ -1,4 +1,5 @@
-#startGame.hover, #nextLevel,
+#startGame.hover, #exitStartGame.hover,
+#nextLevel,
 #submitScore.hover, #tryAgain.hover, 
 #cancel.hover, #submit.hover{
 	border: 10px solid white;

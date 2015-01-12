@@ -14,11 +14,13 @@
     </p>
      
      <div id="nextLevelMenu">                   
-    	<button id="nextLevel" class="largeButton topSpaceSmall">Próximo nivel</button>
+    	<button id="nextLevel" class="largeButton">Próximo nivel</button>
      </div>
 </div>
 
 <script type="text/javascript">
+	$(function(){component.nextLevelMenu.components[0].set_active(true);});
+
     $('#nextLevel').click(function () {
     	playGame();
         game.loadNextLevel();
