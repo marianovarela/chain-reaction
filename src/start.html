@@ -6,17 +6,7 @@
     }
     
     $('#startGame').click(function () { game.init(CANVAS_ID); ui.overlayClose(); playGame(); });
-    $('#top100Link').click(function (e) {
-        e.preventDefault();
-        ui.loadOverlay(ui.files.highScore);
-    });
 
-    if (highScore.isEmpty) {
-        for (var i = 1; i <= 10; i++) {
-            highScore.save('Player', i * 5000, levels.length - 1);
-        }
-    }
-	
 	$.get($GAME.url_get + $GAME.name, function (data){
     		scores = data._embedded.score;
     		addPosition(scores);

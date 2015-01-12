@@ -6,33 +6,6 @@
     this.isEmpty = this.highScores.length == 0;
 }
 
-HighScoreLocalStorage.prototype.save = function (name, points, level, callback) {
-    var highScoreItem = {
-        name: name,
-        points: points,
-        level: level,
-        date: new Date()
-    };
-
-    this.highScores.push(highScoreItem);
-    this.saveChanges();
-    
-    if (callback != null)
-        callback(highScoreItem);
-};
-
-HighScoreLocalStorage.prototype.topScores = function (maxItems, callback) {
-    if (callback == null)
-        return;
-
-    var topList = this.highScores.sort(this.byHighScore).slice(0, maxItems).map(function (obj, index) {
-        obj.position = index + 1;
-        return obj;
-    });
-
-    callback(this.highScores.sort(this.byHighScore).slice(0, maxItems));
-};
-
 HighScoreLocalStorage.prototype.byHighScore = function (a, b) {
     return b.points - a.points;
 };
