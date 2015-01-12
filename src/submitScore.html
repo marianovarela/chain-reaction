@@ -33,11 +33,27 @@
             return;
         localStorage.name = name;
 
-        highScore.save(name, game.stats.score, game.currentLevel, function () {
-            ui.loadOverlay(ui.files.start);
-        });
-		deactivate(component.submitScore);
-		activate(component.startPanel);
+        var data = {
+        	name : name,
+        	score : game.stats.score,
+        	game : $GAME.name
+        };
+        $.ajax(
+		{
+			url : $GAME.url_post,
+			type: "POST",
+			contentType:"application/json",
+			dataType: "json",
+			data: JSON.stringify(data),
+			success: function(data){
+				ui.loadOverlay(ui.files.start);
+				deactivate(component.submitScore);
+				activate(component.startPanel);
+			},
+			error: function(data){
+				console.log(data);
+			}
+		});
     });
     
     $('#suc #level').text(game.currentLevel);
