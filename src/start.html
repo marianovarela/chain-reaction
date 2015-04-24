@@ -9,10 +9,6 @@
     
     $('#startGame').click(function () { game.init(CANVAS_ID); ui.overlayClose(); playGame(); });
     
-    $('#exitStartGame').click(function () { 
-    	window.close();
-    });
-
 	$.get($GAME.url_get + $GAME.name, function (data){
     		scores = data._embedded.score;
     		addPosition(scores);
@@ -29,7 +25,7 @@
 		                    
 	    <div class="center">
 	        <div id="startGame" class="largeButton">Iniciar juego</div><br/>
-	        <div id="exitStartGame" class="smallButton">Salir del juego</div>
+	        <!-- <div id="exitStartGame" class="smallButton">Salir del juego</div> -->
 	    </div>
 	</div>
 	<div class="startRightPanel">
