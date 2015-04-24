@@ -269,7 +269,7 @@ var extensible = function($rootScope) {
 						if (game.bomb == null || game.bomb.isExploded)
            					return;
 						
-						var audio = new Audio('audio/bomb_planted.mp3');
+						var audio = new Audio('audio/bomb.mp3');
 						audio.play();
 				        game.bomb.explode();
 				        game.addExplosion(game.bomb);

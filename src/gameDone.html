@@ -1,7 +1,7 @@
 ﻿<div id="suc" class="center topSpaceLarge">
-    <h2>Lograste superar todos los niveles</h2>
+    <h2>Ganaste!!!</h2>
     <p class="topSpaceMedium">
-        Ganaste el juego con <span class="bold" id="explosions">0</span> explosiones 
+        Lograste superar todos los niveles el juego con <span class="bold" id="explosions">0</span> explosiones 
         y <span class="bold" id="levelScore">0</span> puntos. <br />
 
         Su reacción en cadena más larga ha sido de <span class="bold" id="reactions">0</span> explosiones.<br />    </p>
@@ -9,14 +9,18 @@
         Puntaje total: <span class="bold" id="score"></span>. <br />
         Guarda tu puntuacíon y competí por ser el puntaje mas alto
     </p>
-    <div class="center topSpaceMedium">
-        <button id="submitScore" class="largeButton">Guardar puntuación</button>
+    <div id="winGame" class="center topSpaceMedium">
+        <button id="submitScore" class="largeButton">Guardar puntaje</button>
         <i>- ó -</i>
         <button id="newGame" class="largeButton">Jugar de nuevo</button>
     </div>
 </div>
 
 <script type="text/javascript">
+    $(function(){
+      component.winGame.set_active(true);
+    });
+
     $('#newGame').click(function () {
         game.init('#game');
         ui.overlayClose();

@@ -53,14 +53,14 @@ Ball.prototype.drawScore = function () {
 
 Ball.prototype.move = function () {
     if (this.x + this.radius > game.boundary.right)
-        this.dx = this.dx * -1;
+        this.dx = this.dx * -2;
     else if (this.x - this.radius < game.boundary.left)
-        this.dx = this.dx * -1;
+        this.dx = this.dx * -2;
 
     if (this.y + this.radius > game.boundary.bottom)
-        this.dy = this.dy * -1;
+        this.dy = this.dy * -2;
     else if (this.y - this.radius < game.boundary.top)
-        this.dy = this.dy * -1;
+        this.dy = this.dy * -2;
 
     this.x += this.dx;
     this.y += this.dy;

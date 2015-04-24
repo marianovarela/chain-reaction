@@ -96,6 +96,11 @@
 		$(function(){component.game.set_active(true);});
 	}
 	
+	function winGame(){
+		$(function(){component.winGame.set_not_active();});
+		$(function(){component.winGame.set_active(true);});
+	}
+	
 	function initMenuNextLevel(){
 		$(function(){component.game.set_not_active();});
 		$(function(){component.nextLevelMenu.set_active(true);});
@@ -128,6 +133,8 @@
 		component.gameover = extensible.create_horizontal('fail');
 		
 		component.submitScore= extensible.create_horizontal('suc');
+		
+		component.winGame= extensible.create_horizontal('suc');
 		
 		component.root
 			.add(extensible.create_horizontal('startButtonPanel')
@@ -165,6 +172,14 @@
 		        	.add(extensible.create_leaf('submit').set_priority(1))
 			    )
 			);
+			
+		component.root
+			.add(extensible.create_horizontal('winGame')
+			    .add(component.winGame.set_priority(0)
+		        	.add(extensible.create_leaf('submitScore').set_priority(0))
+		        	.add(extensible.create_leaf('newGame').set_priority(1))
+			    )
+			);	
 					
 	}
 
