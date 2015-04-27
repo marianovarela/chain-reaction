@@ -13,6 +13,7 @@ body
 	margin: 0;
 	padding: 0;
 	width: 100%;
+	overflow: hidden;
 }
 
 h1 
@@ -39,6 +40,11 @@ hr
 	width: 140px;
 	margin: 1.2em auto;
 }
+
+div{
+	
+}
+
 #wrapBackground 
 {
 	margin: 110px auto 50px auto;
