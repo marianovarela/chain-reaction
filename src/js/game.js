@@ -7,7 +7,7 @@
 	var $GAME = {};
 	
 	$GAME.name = "CHAIN_REACTION";
-	$GAME.server = "http://localhost:8083";
+	$GAME.server = "http://tiendatac.minplan.gob.ar/games-score";
 	$GAME.url_get = $GAME.server + "/api/v1/score/search/findByGameOrderByScoreDesc?game=";
 	$GAME.url_post = $GAME.server + "/api/v1/score";
 	
