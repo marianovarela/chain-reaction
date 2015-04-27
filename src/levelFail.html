@@ -4,13 +4,16 @@
         El nivel <span class="bold" id="level">0</span> requiere <span class="bold" id="required">0</span> explosiones y solo manejar <span class="bold" id="explosions">0</span> explosiones. <br />        Su puntuación total es de nuevo de <span id="score">0</span>.
     </p>
     <div id="menuFail" class="center topSpaceMedium">
-        <button id="submitScore" class="smallButton">Guardar mi puntuación</button>
         <button id="tryAgain" class="largeButton">Inténtalo de nuevo</button>
+        <button id="submitScoreFail" class="smallButton">Guardar mi puntuación</button>
     </div>
 </div>
 
 <script type="text/javascript">
-	$(function(){component.gameover.components[0].set_active(true);});
+	$(function(){
+	   activate(component.gameover);
+	   deactivate(component.gameover);});
+	   component.gameover.set_active(true);
 
     $('#tryAgain').click(function () {
         game.restartLevel();
@@ -19,7 +22,7 @@
         activate(component.game);
     });
 
-    $('#submitScore').click(function () {
+    $('#submitScoreFail').click(function () {
         ui.loadOverlay(ui.files.submitScore);
         deactivate(component.gameover);
         activate(component.submitScore);

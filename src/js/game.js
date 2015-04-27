@@ -160,8 +160,8 @@
 		component.root
 			.add(extensible.create_horizontal('menuFail')
 			    .add(component.gameover.set_priority(0)
-		        	.add(extensible.create_leaf('submitScore').set_priority(0))
-		        	.add(extensible.create_leaf('tryAgain').set_priority(1))
+		        	.add(extensible.create_leaf('tryAgain').set_priority(0))
+		        	.add(extensible.create_leaf('submitScoreFail').set_priority(1))
 			    )
 			);	
 			

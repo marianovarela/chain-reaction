@@ -1,6 +1,6 @@
 #startGame.hover, #exitStartGame.hover,
 #nextLevel.hover, #newGame.hover,
-#submitScore.hover, #tryAgain.hover, 
+#submitScore.hover, #submitScoreFail.hover, #tryAgain.hover, 
 #cancel.hover, #submit.hover{
 	border: 10px solid white;
 }
