@@ -7,8 +7,9 @@
 	var $GAME = {};
 	
 	$GAME.name = "CHAIN_REACTION";
-	$GAME.url_get = "http://localhost:8083/api/v1/score/search/findByGameOrderByScoreDesc?game=";
-	$GAME.url_post = "http://localhost:8083/api/v1/score";
+	$GAME.server = "http://localhost:8083";
+	$GAME.url_get = $GAME.server + "/api/v1/score/search/findByGameOrderByScoreDesc?game=";
+	$GAME.url_post = $GAME.server + "/api/v1/score";
 	
 	component = {};
 
