@@ -1,6 +1,5 @@
 ﻿<div id="suc" class="center topSpaceLarge">
     <div id="submitScore">
-	    <h2>Guardar tu puntuación</h2>
 	    <p class="topSpaceMedium">
 	        Puntuación: <span class="bold" id="score">0</span>.
 	    </p>
@@ -8,8 +7,12 @@
 	        Ingrese su nombre para guardar su puntuación:<br />
 	        <input type="text" id="name" size="30" placeholder="Name" />
 	    </p>
+	    
+	    <div id="keyboard">
 	      
-	    <div id="numeric">
+	    </div>
+	      
+	    <!-- <div id="numeric">
 	      <button id="key_1" class="keyButton">1</button>
 	      <button id="key_2" class="keyButton">2</button>
 	      <button id="key_3" class="keyButton">3</button>
@@ -56,24 +59,26 @@
         <button id="b" class="keyButton">t</button>
         <button id="n" class="keyButton">y</button>
         <button id="m" class="keyButton">u</button>
-      </div>
+      </div> -->
 	     
 	    <div id="options">
+	        <button id="delete" class="smallButton">Borrar</button> 
 	        <button id="cancel" class="smallButton">Cancelar</button>
 	        <button id="submit" class="largeButton">Guardar</button>
 	    </div>
+	    
     </div>            
 </div>
 
 <script type="text/javascript">
 	$(function(){
+	  var keyboard = initKeyboard();
+	  component.submitScore.add(keyboard);
 	  component.submitScore.set_active(true);
-	  component.submitScore.components[0].set_active(true);
-	  component.submitScore.components[0].components[0].set_active(true);
 	});
-
-    $('#name').val(localStorage.name);
-
+  
+    $('#name').val("Player");
+    
     $('#cancel').click(function () {
         game.reset();
         ui.updateStatusBar();
@@ -81,7 +86,7 @@
         deactivate(component.submitScore);
     	activate(component.startPanel);
     });
-
+    
     $('#submit').click(function () {
         var name = $('#name').val();
         if (name == null || name == "")

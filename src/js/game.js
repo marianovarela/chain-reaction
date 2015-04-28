@@ -120,6 +120,73 @@
 		componentId.set_not_active();
 	}
 	
+	var keymodels = [
+      { kind: 'KeyButtonSpecial', content: '1', special: '!' },
+      { kind: 'KeyButtonSpecial', content: '2', special: '"' },
+      { kind: 'KeyButtonSpecial', content: '3', special: '·' },
+      { kind: 'KeyButtonSpecial', content: '4', special: '$' },
+      { kind: 'KeyButtonSpecial', content: '5', special: '%' },
+      { kind: 'KeyButtonSpecial', content: '6', special: '&' },
+      { kind: 'KeyButtonSpecial', content: '7', special: '/' },
+      { kind: 'KeyButtonSpecial', content: '8', special: '(' },
+      { kind: 'KeyButtonSpecial', content: '9', special: ')' },
+      { kind: 'KeyButtonSpecial', content: '0', special: '=' },
+      { kind: 'Alphabetic', content: 'q'},
+      { kind: 'Alphabetic', content: 'w'},
+      { kind: 'Alphabetic', content: 'e'},
+      { kind: 'Alphabetic', content: 'r'},
+      { kind: 'Alphabetic', content: 't'},
+      { kind: 'Alphabetic', content: 'y'},
+      { kind: 'Alphabetic', content: 'u'},
+      { kind: 'Alphabetic', content: 'i'},
+      { kind: 'Alphabetic', content: 'o'},
+      { kind: 'Alphabetic', content: 'p'},
+      { kind: 'Alphabetic', content: 'a'},
+      { kind: 'Alphabetic', content: 's'},
+      { kind: 'Alphabetic', content: 'd'},
+      { kind: 'Alphabetic', content: 'f'},
+      { kind: 'Alphabetic', content: 'g'},
+      { kind: 'Alphabetic', content: 'h'},
+      { kind: 'Alphabetic', content: 'j'},
+      { kind: 'Alphabetic', content: 'k'},
+      { kind: 'Alphabetic', content: 'l'},
+      { kind: 'Alphabetic', content: "ñ"},
+      { kind: 'Alphabetic', content: 'z'},
+      { kind: 'Alphabetic', content: 'x'},
+      { kind: 'Alphabetic', content: 'c'},
+      { kind: 'Alphabetic', content: 'v'},
+      { kind: 'Alphabetic', content: 'b'},
+      { kind: 'Alphabetic', content: 'n'},
+      { kind: 'Alphabetic', content: 'm'}
+    ];
+	
+	var constructors = {
+		KeyButtonSpecial: function(keymodel, index){
+			var element = '<button id="key-' + keymodel.content + '" class="keyButton">' + keymodel.content + '</button>';
+			
+			var navigable = extensible.create_leaf('key-'+ keymodel.content).set_priority(index);
+			navigable.handle = function(key) {
+					if (key === 'enter') {
+						console.log(keymodel.content);
+						$("#inputtext").val($("#inputtext").val() + keymodel.content);
+						return true;
+					}
+					return false;
+			};
+			return {navigable: navigable, element: element};
+		},
+		KeyButton: function(keymodel, index){
+			var element = '<button id="key-' + keymodel.content + '" class="keyButton">' + keymodel.content + '</button>';
+			var navigable = extensible.create_leaf('key-'+ keymodel.content).set_priority(index);
+			return {navigable: navigable, element: element};
+		},
+		Alphabetic: function(keymodel, index){
+			var element = '<button id="key-' + keymodel.content + '" class="keyButton">' + keymodel.content + '</button>';
+			var navigable = extensible.create_leaf('key-'+ keymodel.content).set_priority(index);
+			return {navigable: navigable, element: element};
+		},
+	};
+	
 	function initGame() {
 		
 		component.control.initialize();
@@ -167,73 +234,86 @@
 			);	
 			
 		component.root
-			.add(extensible.create_vertical('submitScores')
-			    .add(component.submitScore.set_priority(0)
-			    	.add(extensible.create_horizontal('numeric').set_priority(0)
-			        	.add(extensible.create_leaf('key_1').set_priority(0))
-			        	.add(extensible.create_leaf('key_2').set_priority(1))
-			        	.add(extensible.create_leaf('key_3').set_priority(2))
-			        	.add(extensible.create_leaf('key_4').set_priority(3))
-			        	.add(extensible.create_leaf('key_5').set_priority(4))
-			        	.add(extensible.create_leaf('key_6').set_priority(5))
-			        	.add(extensible.create_leaf('key_7').set_priority(6))
-			        	.add(extensible.create_leaf('key_8').set_priority(7))
-			        	.add(extensible.create_leaf('key_9').set_priority(8))
-			        	.add(extensible.create_leaf('key_0').set_priority(9))
-			    	)
-			    	.add(extensible.create_horizontal('alphabetic1').set_priority(1)
-			        	.add(extensible.create_leaf('q').set_priority(0))
-			        	.add(extensible.create_leaf('w').set_priority(1))
-			        	.add(extensible.create_leaf('e').set_priority(2))
-			        	.add(extensible.create_leaf('r').set_priority(3))
-			        	.add(extensible.create_leaf('t').set_priority(4))
-			        	.add(extensible.create_leaf('y').set_priority(5))
-			        	.add(extensible.create_leaf('u').set_priority(6))
-			        	.add(extensible.create_leaf('i').set_priority(7))
-			        	.add(extensible.create_leaf('o').set_priority(8))
-			        	.add(extensible.create_leaf('p').set_priority(9))
-			    	)
-			    	.add(extensible.create_horizontal('alphabetic2').set_priority(2)
-			        	.add(extensible.create_leaf('a').set_priority(0))
-			        	.add(extensible.create_leaf('s').set_priority(1))
-			        	.add(extensible.create_leaf('d').set_priority(2))
-			        	.add(extensible.create_leaf('f').set_priority(3))
-			        	.add(extensible.create_leaf('g').set_priority(4))
-			        	.add(extensible.create_leaf('h').set_priority(5))
-			        	.add(extensible.create_leaf('j').set_priority(6))
-			        	.add(extensible.create_leaf('k').set_priority(7))
-			        	.add(extensible.create_leaf('l').set_priority(8))
-			        	.add(extensible.create_leaf('ñ').set_priority(9))
-			    	)
-			    	.add(extensible.create_horizontal('alphabetic3').set_priority(3)
-			        	.add(extensible.create_leaf('z').set_priority(0))
-			        	.add(extensible.create_leaf('x').set_priority(1))
-			        	.add(extensible.create_leaf('c').set_priority(2))
-			        	.add(extensible.create_leaf('v').set_priority(3))
-			        	.add(extensible.create_leaf('b').set_priority(4))
-			        	.add(extensible.create_leaf('n').set_priority(5))
-			        	.add(extensible.create_leaf('m').set_priority(6))
-			    	)
-			    	.add(extensible.create_horizontal('options').set_priority(4)
-			        	.add(extensible.create_leaf('cancel').set_priority(0))
-			        	.add(extensible.create_leaf('submit').set_priority(1))
-			    	)
-			    )
-			);
-			
-		component.root
 			.add(extensible.create_horizontal('winGame')
 			    .add(component.winGame.set_priority(0)
 		        	.add(extensible.create_leaf('submitScore').set_priority(0))
 		        	.add(extensible.create_leaf('newGame').set_priority(1))
 			    )
 			);	
+	
+		component.root
+			.add(extensible.create_vertical('submitScores')
+			    .add(component.submitScore.set_priority(0)
+			    	// .add(extensible.create_horizontal('numeric').set_priority(0)
+			        	// .add(extensible.create_leaf('key_1').set_priority(0))
+			        	// .add(extensible.create_leaf('key_2').set_priority(1))
+			        	// .add(extensible.create_leaf('key_3').set_priority(2))
+			        	// .add(extensible.create_leaf('key_4').set_priority(3))
+			        	// .add(extensible.create_leaf('key_5').set_priority(4))
+			        	// .add(extensible.create_leaf('key_6').set_priority(5))
+			        	// .add(extensible.create_leaf('key_7').set_priority(6))
+			        	// .add(extensible.create_leaf('key_8').set_priority(7))
+			        	// .add(extensible.create_leaf('key_9').set_priority(8))
+			        	// .add(extensible.create_leaf('key_0').set_priority(9))
+			    	// )
+			    	// .add(extensible.create_horizontal('alphabetic1').set_priority(1)
+			        	// .add(extensible.create_leaf('q').set_priority(0))
+			        	// .add(extensible.create_leaf('w').set_priority(1))
+			        	// .add(extensible.create_leaf('e').set_priority(2))
+			        	// .add(extensible.create_leaf('r').set_priority(3))
+			        	// .add(extensible.create_leaf('t').set_priority(4))
+			        	// .add(extensible.create_leaf('y').set_priority(5))
+			        	// .add(extensible.create_leaf('u').set_priority(6))
+			        	// .add(extensible.create_leaf('i').set_priority(7))
+			        	// .add(extensible.create_leaf('o').set_priority(8))
+			        	// .add(extensible.create_leaf('p').set_priority(9))
+			    	// )
+			    	// .add(extensible.create_horizontal('alphabetic2').set_priority(2)
+			        	// .add(extensible.create_leaf('a').set_priority(0))
+			        	// .add(extensible.create_leaf('s').set_priority(1))
+			        	// .add(extensible.create_leaf('d').set_priority(2))
+			        	// .add(extensible.create_leaf('f').set_priority(3))
+			        	// .add(extensible.create_leaf('g').set_priority(4))
+			        	// .add(extensible.create_leaf('h').set_priority(5))
+			        	// .add(extensible.create_leaf('j').set_priority(6))
+			        	// .add(extensible.create_leaf('k').set_priority(7))
+			        	// .add(extensible.create_leaf('l').set_priority(8))
+			        	// .add(extensible.create_leaf('ñ').set_priority(9))
+			    	// )
+			    	// .add(extensible.create_horizontal('alphabetic3').set_priority(3)
+			        	// .add(extensible.create_leaf('z').set_priority(0))
+			        	// .add(extensible.create_leaf('x').set_priority(1))
+			        	// .add(extensible.create_leaf('c').set_priority(2))
+			        	// .add(extensible.create_leaf('v').set_priority(3))
+			        	// .add(extensible.create_leaf('b').set_priority(4))
+			        	// .add(extensible.create_leaf('n').set_priority(5))
+			        	// .add(extensible.create_leaf('m').set_priority(6))
+			    	// )
+			    	.add(extensible.create_horizontal('options').set_priority(1)
+			        	.add(extensible.create_leaf('delete').set_priority(0))
+			        	.add(extensible.create_leaf('cancel').set_priority(1))
+			        	.add(extensible.create_leaf('submit').set_priority(2))
+			    	)
+			    )
+			);
 					
 	}
+	
 		
 
 	initGame();
-
+	
+	function initKeyboard(){
+		var keyboard = extensible.create_multiline('submitScores', 10);
+		for(var index = 0; index < keymodels.length; index++){
+	      container = constructors[keymodels[index].kind](keymodels[index], index);
+	      $("#keyboard").append(container.element);
+		  keyboard.add(container.navigable);
+		}
+		return keyboard;
+	}	
+		
+	
 var game = game || {};
 
 game = {

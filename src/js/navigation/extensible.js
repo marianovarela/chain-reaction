@@ -174,6 +174,10 @@ var extensible = function($rootScope) {
 					this.handlers = initial_handlers();
 					return this;
 				},
+				and_extend: function(extensions) {
+				    this.handlers = $.extend(this.handlers, extensions);
+				    return this;
+				},
 				go_forward : function(amount) {
 					var current_index, last_index;
 					current_index = this.current_index();
@@ -252,6 +256,31 @@ var extensible = function($rootScope) {
 				},
 			};
 		},
+		create_multiline: function(identifier, line_length) {
+		    var instance =  this.create_basic(identifier).initialize().and_extend({
+		      left: function(self) {
+		        if (self.current_index() % line_length !== 0) {
+		          return self.go_back(1);
+		        } else {
+		          return false;
+		        }
+		      },
+		      right: function(self) {
+		        if ((self.current_index() + 1) % line_length !== 0) {
+		          return self.go_forward(1);
+		        } else {
+		          return false;
+		        }
+		      },
+		      up: function(self) {
+		        return self.go_back(line_length);
+		      },
+		      down: function(self) {
+		        return self.go_forward(line_length);
+		      }
+		    });
+		    return instance;
+		  },
 		create_ball : function(identifier) {
 			return {
 				identifier : identifier,
