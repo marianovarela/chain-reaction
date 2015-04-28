@@ -133,7 +133,7 @@
 		
 		component.gameover = extensible.create_horizontal('fail');
 		
-		component.submitScore= extensible.create_horizontal('suc');
+		component.submitScore= extensible.create_vertical('suc');
 		
 		component.winGame= extensible.create_horizontal('suc');
 		
@@ -167,10 +167,57 @@
 			);	
 			
 		component.root
-			.add(extensible.create_horizontal('submitScores')
+			.add(extensible.create_vertical('submitScores')
 			    .add(component.submitScore.set_priority(0)
-		        	.add(extensible.create_leaf('cancel').set_priority(0))
-		        	.add(extensible.create_leaf('submit').set_priority(1))
+			    	.add(extensible.create_horizontal('numeric').set_priority(0)
+			        	.add(extensible.create_leaf('key_1').set_priority(0))
+			        	.add(extensible.create_leaf('key_2').set_priority(1))
+			        	.add(extensible.create_leaf('key_3').set_priority(2))
+			        	.add(extensible.create_leaf('key_4').set_priority(3))
+			        	.add(extensible.create_leaf('key_5').set_priority(4))
+			        	.add(extensible.create_leaf('key_6').set_priority(5))
+			        	.add(extensible.create_leaf('key_7').set_priority(6))
+			        	.add(extensible.create_leaf('key_8').set_priority(7))
+			        	.add(extensible.create_leaf('key_9').set_priority(8))
+			        	.add(extensible.create_leaf('key_0').set_priority(9))
+			    	)
+			    	.add(extensible.create_horizontal('alphabetic1').set_priority(1)
+			        	.add(extensible.create_leaf('q').set_priority(0))
+			        	.add(extensible.create_leaf('w').set_priority(1))
+			        	.add(extensible.create_leaf('e').set_priority(2))
+			        	.add(extensible.create_leaf('r').set_priority(3))
+			        	.add(extensible.create_leaf('t').set_priority(4))
+			        	.add(extensible.create_leaf('y').set_priority(5))
+			        	.add(extensible.create_leaf('u').set_priority(6))
+			        	.add(extensible.create_leaf('i').set_priority(7))
+			        	.add(extensible.create_leaf('o').set_priority(8))
+			        	.add(extensible.create_leaf('p').set_priority(9))
+			    	)
+			    	.add(extensible.create_horizontal('alphabetic2').set_priority(2)
+			        	.add(extensible.create_leaf('a').set_priority(0))
+			        	.add(extensible.create_leaf('s').set_priority(1))
+			        	.add(extensible.create_leaf('d').set_priority(2))
+			        	.add(extensible.create_leaf('f').set_priority(3))
+			        	.add(extensible.create_leaf('g').set_priority(4))
+			        	.add(extensible.create_leaf('h').set_priority(5))
+			        	.add(extensible.create_leaf('j').set_priority(6))
+			        	.add(extensible.create_leaf('k').set_priority(7))
+			        	.add(extensible.create_leaf('l').set_priority(8))
+			        	.add(extensible.create_leaf('ñ').set_priority(9))
+			    	)
+			    	.add(extensible.create_horizontal('alphabetic3').set_priority(3)
+			        	.add(extensible.create_leaf('z').set_priority(0))
+			        	.add(extensible.create_leaf('x').set_priority(1))
+			        	.add(extensible.create_leaf('c').set_priority(2))
+			        	.add(extensible.create_leaf('v').set_priority(3))
+			        	.add(extensible.create_leaf('b').set_priority(4))
+			        	.add(extensible.create_leaf('n').set_priority(5))
+			        	.add(extensible.create_leaf('m').set_priority(6))
+			    	)
+			    	.add(extensible.create_horizontal('options').set_priority(4)
+			        	.add(extensible.create_leaf('cancel').set_priority(0))
+			        	.add(extensible.create_leaf('submit').set_priority(1))
+			    	)
 			    )
 			);
 			
@@ -183,6 +230,7 @@
 			);	
 					
 	}
+		
 
 	initGame();
 

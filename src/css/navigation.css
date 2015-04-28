@@ -1,6 +1,11 @@
 #startGame.hover, #exitStartGame.hover,
 #nextLevel.hover, #newGame.hover,
 #submitScore.hover, #submitScoreFail.hover, #tryAgain.hover, 
-#cancel.hover, #submit.hover{
+#cancel.hover, #submit.hover,
+#key_0.hover, #key_1.hover, #key_2.hover, #key_3.hover, #key_4.hover, #key_5.hover,
+#key_6.hover, #key_7.hover, #key_8.hover, #key_9.hover,
+#q.hover, #w.hover, #e.hover, #r.hover, #t.hover, #y.hover, #u.hover, #i.hover, #o.hover, #p.hover,
+#a.hover, #s.hover, #d.hover, #f.hover, #g.hover, #h.hover, #j.hover, #k.hover, #l.hover, #ñ.hover,
+#z.hover, #x.hover, #c.hover, #v.hover, #b.hover, #n.hover, #m.hover{
 	border: 10px solid white;
 }
