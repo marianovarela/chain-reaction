@@ -290,9 +290,10 @@
 			        	// .add(extensible.create_leaf('m').set_priority(6))
 			    	// )
 			    	.add(extensible.create_horizontal('options').set_priority(1)
-			        	.add(extensible.create_leaf('delete').set_priority(0))
-			        	.add(extensible.create_leaf('cancel').set_priority(1))
-			        	.add(extensible.create_leaf('submit').set_priority(2))
+			    		.add(extensible.create_leaf('shift').set_priority(0))	
+			        	.add(extensible.create_leaf('delete').set_priority(1))
+			        	.add(extensible.create_leaf('cancel').set_priority(2))
+			        	.add(extensible.create_leaf('submit').set_priority(3))
 			    	)
 			    )
 			);

@@ -7,7 +7,8 @@
 #tryAgain.hover, 
 #cancel.hover,
 #submit.hover,
-#delete.hover{
+#delete.hover,
+#shift.hover{
 	border: 10px solid white;
 }
 #keyboard{

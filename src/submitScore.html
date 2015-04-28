@@ -60,8 +60,9 @@
         <button id="n" class="keyButton">y</button>
         <button id="m" class="keyButton">u</button>
       </div> -->
-	     
+
 	    <div id="options">
+	        <button id="shift" class="smallButton">Mayúscula</button>
 	        <button id="delete" class="smallButton">Borrar</button> 
 	        <button id="cancel" class="smallButton">Cancelar</button>
 	        <button id="submit" class="largeButton">Guardar</button>
@@ -75,6 +76,7 @@
 	  var keyboard = initKeyboard();
 	  component.submitScore.add(keyboard);
 	  component.submitScore.set_active(true);
+	  component.submitScore.components[0].set_active(true);
 	});
   
     $('#name').val("Player");
