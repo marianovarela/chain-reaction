@@ -1,12 +1,6 @@
 ﻿<div id="suc" class="center topSpaceLarge">
     <div id="submitScore">
-	    <p class="topSpaceMedium">
-	        Puntuación: <span class="bold" id="score">0</span>.
-	    </p>
-	    <p>
-	        Ingrese su nombre para guardar su puntuación:<br />
-	        <input type="text" id="name" size="30" placeholder="Name" />
-	    </p>
+        <input type="text" id="name" size="30" placeholder="Name" />
 	    
 	    <div id="keyboard">
 	      
@@ -72,6 +66,8 @@
 </div>
 
 <script type="text/javascript">
+	var isShift = false;	
+
 	$(function(){
 	  var keyboard = initKeyboard();
 	  component.submitScore.add(keyboard);
@@ -80,6 +76,23 @@
 	});
   
     $('#name').val("Player");
+    
+    $('#delete').click(function () {
+        $('#name').val($('#name').val().slice(0,-1));
+    });
+    
+    $('#shift').click(function () {
+        if(isShift){
+        	console.log("entro1");
+        	$('#shift').removeClass("select");
+        	isShift = false;
+        }
+        else{
+        	console.log("entro2");
+        	$('#shift').addClass("select");
+        	isShift = true;
+        }
+    });
     
     $('#cancel').click(function () {
         game.reset();

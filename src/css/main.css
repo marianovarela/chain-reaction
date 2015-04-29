@@ -147,7 +147,7 @@ hr
 	width: 580px;
 	height: 359px;
 	padding: 20px;
-	overflow: auto;
+	overflow: hidden;
 }
 #overlay p 
 {
@@ -257,7 +257,7 @@ input[type=text]
 
 /* misc */
 
-.center { text-align: center; }
+.center { text-align: center; overflow: hidden;}
 .topSpaceLarge { margin-top: 3em; }
 .topSpaceMedium { margin-top: 2em; }
 .topSpaceSmall { margin-top: 1em; }

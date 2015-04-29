@@ -7,7 +7,8 @@
 	var $GAME = {};
 	
 	$GAME.name = "CHAIN_REACTION";
-	$GAME.server = "http://tiendatac.minplan.gob.ar/games-score";
+	// $GAME.server = "http://tiendatac.minplan.gob.ar/games-score";
+	$GAME.server = "http://localhost:8083";
 	$GAME.url_get = $GAME.server + "/api/v1/score/search/findByGameOrderByScoreDesc?game=";
 	$GAME.url_post = $GAME.server + "/api/v1/score";
 	
@@ -157,7 +158,10 @@
       { kind: 'Alphabetic', content: 'v'},
       { kind: 'Alphabetic', content: 'b'},
       { kind: 'Alphabetic', content: 'n'},
-      { kind: 'Alphabetic', content: 'm'}
+      { kind: 'Alphabetic', content: 'm'},
+      { kind: 'KeyButton', content: ','},
+      { kind: 'KeyButton', content: '.'},
+      { kind: 'KeyButton', content: '?'}
     ];
 	
 	var constructors = {
@@ -167,8 +171,7 @@
 			var navigable = extensible.create_leaf('key-'+ keymodel.content).set_priority(index);
 			navigable.handle = function(key) {
 					if (key === 'enter') {
-						console.log(keymodel.content);
-						$("#inputtext").val($("#inputtext").val() + keymodel.content);
+						$("#name").val($("#name").val() + keymodel.content);
 						return true;
 					}
 					return false;
@@ -176,13 +179,39 @@
 			return {navigable: navigable, element: element};
 		},
 		KeyButton: function(keymodel, index){
-			var element = '<button id="key-' + keymodel.content + '" class="keyButton">' + keymodel.content + '</button>';
-			var navigable = extensible.create_leaf('key-'+ keymodel.content).set_priority(index);
+			var id;
+			if(keymodel.content == "."){
+				id = "point";			
+			}else{
+				if(keymodel.content == ","){
+					id = "comma";			
+				}else{
+					if(keymodel.content == "?"){
+						id = "interrogation";			
+					}
+				} 
+			}
+			var element = '<button id="key-' + id + '" class="keyButton">' + keymodel.content + '</button>';
+			var navigable = extensible.create_leaf('key-'+ id).set_priority(index);
+			navigable.handle = function(key) {
+					if (key === 'enter') {
+						$("#name").val($("#name").val() + keymodel.content);
+						return true;
+					}
+					return false;
+			};
 			return {navigable: navigable, element: element};
 		},
 		Alphabetic: function(keymodel, index){
 			var element = '<button id="key-' + keymodel.content + '" class="keyButton">' + keymodel.content + '</button>';
 			var navigable = extensible.create_leaf('key-'+ keymodel.content).set_priority(index);
+			navigable.handle = function(key) {
+					if (key === 'enter') {
+						$("#name").val($("#name").val() + keymodel.content);
+						return true;
+					}
+					return false;
+			};
 			return {navigable: navigable, element: element};
 		},
 	};
