@@ -5,55 +5,6 @@
 	    <div id="keyboard">
 	      
 	    </div>
-	      
-	    <!-- <div id="numeric">
-	      <button id="key_1" class="keyButton">1</button>
-	      <button id="key_2" class="keyButton">2</button>
-	      <button id="key_3" class="keyButton">3</button>
-	      <button id="key_4" class="keyButton">4</button>
-	      <button id="key_5" class="keyButton">5</button>
-	      <button id="key_6" class="keyButton">6</button>
-	      <button id="key_7" class="keyButton">7</button>
-	      <button id="key_8" class="keyButton">8</button>
-	      <button id="key_9" class="keyButton">9</button>
-	      <button id="key_0" class="keyButton">0</button>    
-	    </div> 
-	    
-	    <div id="alphabetic1">
-        <button id="q" class="keyButton">q</button>
-        <button id="w" class="keyButton">w</button>
-        <button id="e" class="keyButton">e</button>
-        <button id="r" class="keyButton">r</button>
-        <button id="t" class="keyButton">t</button>
-        <button id="y" class="keyButton">y</button>
-        <button id="u" class="keyButton">u</button>
-        <button id="i" class="keyButton">i</button>
-        <button id="o" class="keyButton">o</button>
-        <button id="p" class="keyButton">p</button>    
-      </div>
-      
-      <div id="alphabetic2">
-        <button id="a" class="keyButton">a</button>
-        <button id="s" class="keyButton">s</button>
-        <button id="d" class="keyButton">d</button>
-        <button id="f" class="keyButton">f</button>
-        <button id="g" class="keyButton">g</button>
-        <button id="h" class="keyButton">h</button>
-        <button id="j" class="keyButton">j</button>
-        <button id="k" class="keyButton">k</button>
-        <button id="l" class="keyButton">l</button>
-        <button id="ñ" class="keyButton">ñ</button>    
-      </div>
-      
-      <div id="alphabetic3">
-        <button id="z" class="keyButton">q</button>
-        <button id="x" class="keyButton">w</button>
-        <button id="c" class="keyButton">e</button>
-        <button id="v" class="keyButton">r</button>
-        <button id="b" class="keyButton">t</button>
-        <button id="n" class="keyButton">y</button>
-        <button id="m" class="keyButton">u</button>
-      </div> -->
 
 	    <div id="options">
 	        <button id="shift" class="smallButton">Mayúscula</button>
@@ -66,8 +17,6 @@
 </div>
 
 <script type="text/javascript">
-	var isShift = false;	
-
 	$(function(){
 	  var keyboard = initKeyboard();
 	  component.submitScore.add(keyboard);
@@ -82,15 +31,15 @@
     });
     
     $('#shift').click(function () {
-        if(isShift){
+        if(component.isShift){
         	console.log("entro1");
         	$('#shift').removeClass("select");
-        	isShift = false;
+        	component.isShift = false;
         }
         else{
         	console.log("entro2");
         	$('#shift').addClass("select");
-        	isShift = true;
+        	component.isShift = true;
         }
     });
     
