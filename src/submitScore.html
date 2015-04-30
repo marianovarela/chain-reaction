@@ -1,4 +1,4 @@
-﻿<div id="suc" class="center topSpaceLarge">
+﻿<div id="suc" class="center">
     <div id="submitScore">
         <input type="text" id="name" size="30" placeholder="Name" />
 	    
@@ -32,12 +32,10 @@
     
     $('#shift').click(function () {
         if(component.isShift){
-        	console.log("entro1");
         	$('#shift').removeClass("select");
         	component.isShift = false;
         }
         else{
-        	console.log("entro2");
         	$('#shift').addClass("select");
         	component.isShift = true;
         }
@@ -54,7 +52,7 @@
     $('#submit').click(function () {
         var name = $('#name').val();
         if (name == null || name == "")
-            return;
+            name = "Player";
         localStorage.name = name;
       
         var data = {
