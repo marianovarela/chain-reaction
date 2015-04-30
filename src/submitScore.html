@@ -54,7 +54,10 @@
         if (name == null || name == "")
             name = "Player";
         localStorage.name = name;
-      
+        
+        game.lastScore.name = name;
+        game.lastScore.score = game.stats.score;
+        
         var data = {
         	name : name,
         	score : game.stats.score,

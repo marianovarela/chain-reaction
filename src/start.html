@@ -14,7 +14,27 @@
     		addPosition(scores);
     		var list = scores.slice(0,10);
     		$("#scoreTemplate").tmpl(list).prependTo(".highScore tbody");
-    });		
+    		
+    		var lastScore = game.lastScore;
+    		for (index = 0; index < scores.length; ++index) {
+          if (scores[index].name == lastScore.name && scores[index].score == lastScore.score){
+            if(index > 9){
+            lastScore.index = index + 1;
+            $('#bar').text("-------------------------");
+            $('#lastIndex').text(util.formatNumber(lastScore.index) + ".");
+            $('#lastName').text(lastScore.name);
+            $('#lastScore').text(lastScore.score); 
+            return;
+            }
+            else{
+              return;
+            }
+          }  
+        }
+    		
+    });	
+    
+    	
 </script>
 
 <div id="startPanel">
@@ -38,12 +58,23 @@
 	            <td class="score">${util.formatNumber(score)}</td>
 	        </tr>
 	    </script>
-	
+	    
 	    <table class="highScore">
 	        <tbody>
 	            <tr>
 	            </tr>
 	        </tbody>
 	    </table>
+	    
+	    <table class="lastScore">
+          <tbody>
+             <tr>
+                <span id="bar"></span>
+                <td id class="number"><span id="lastIndex"></span></td>
+                <td class="name"><span id="lastName"></span></td>
+                <td class="score"><span id="lastScore"></span></td>
+             </tr> 
+          </tbody>
+      </table>
 	</div>
 </div>
